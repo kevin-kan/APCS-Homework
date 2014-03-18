@@ -1,0 +1,6 @@
+public class LLDriver{
+    public static void main(String[] args){
+	MyLinkedList L = new MyLinkedList();
+	L.add("Sully");
+    }
+}
