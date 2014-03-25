@@ -1,0 +1,8 @@
+public class LLIterator<E> implements Iterator{
+
+    public boolean hasNext(){
+	while(){
+
+	}
+    }
+}
