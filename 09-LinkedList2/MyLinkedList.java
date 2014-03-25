@@ -1,11 +1,9 @@
-//Incomplete! Sorry :(
-//I'm still sick from Friday and working on thinking straight
-//I'll try to finish and test this as soon as I get closer to 100%
-
 public class MyLinkedList{
     private Node head;
+    private Node tail;
     public MyLinkedList(){
-	head = new Node(0);
+	head = null;
+	tail = null;
     }
     
     public String toString(){
@@ -34,6 +32,15 @@ public class MyLinkedList{
 		temp.setNext(new Node(s));
 	    }
 	}
+    }
+    public void addEnd(String s){
+	Node temp = head;
+	while (temp.getNext() != null){
+	    temp = temp.getNext();
+	}
+	temp.setNext(new Node(s));
+	temp = temp.getNext();
+	temp.setNext(tail);	
     }
     
     public String get(int i){
