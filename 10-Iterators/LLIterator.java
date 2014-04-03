@@ -1,7 +1,7 @@
 public class LLIterator<E> implements Iterator{
-
+    private Node<E> currentNode;
     public boolean hasNext(){
-	if(next() != null){
+	if(currentNode != null){
 	    return true;
 	}else{
 	    return false;
@@ -9,9 +9,12 @@ public class LLIterator<E> implements Iterator{
     }
 
     public E next(){
-
+	E data = currentNode.getData();
+	currentNode = currentNode.getNext();
+	
     }
 
     public void remove(){
+	
     }
 }

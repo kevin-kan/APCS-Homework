@@ -1,8 +1,19 @@
 public class LLIterator<E> implements Iterator{
-
+    private Node<E> currentNode;
     public boolean hasNext(){
-	while(){
-
+	if(currentNode.getNext() != null){
+	    return true;
+	}else{
+	    return false;
 	}
+    }
+
+    public E next(){
+	E data = currentNode.getData();
+	
+    }
+
+    public void remove(){
+	
     }
 }
