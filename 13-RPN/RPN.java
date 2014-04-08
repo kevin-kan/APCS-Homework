@@ -1,14 +1,18 @@
 import java.io.*;
 import java.util.*;
 
+//Borrowing Lise's Code
+//Makes sense, but it has errors I don't understand.
+
 public class RPN {
+    MyStack x = new MyStack();
     public void clear(){
 	while(!x.isEmpty()){
 	    x.pop();
 	}
     }
     public double calculate(String s){
-	MyStack m = new MyStack();
+	String num = "";
 	for (int i =0; i < s.length(); i++){
 	    if(s.charAt(i) == ' '){
 		if (num != ""){
@@ -18,28 +22,28 @@ public class RPN {
 		}
 	    }
 	    else if (s.charAt(i) == '+'){
-		Double q= x.peek();
+		double q= x.peek();
 		x.pop();
 		q = q+ x.peek();
 		x.pop();
 		x.push(q);
 	    }
 	    else if (s.charAt(i) == '-'){
-		Double q= x.peek();
+		double q= x.peek();
 		x.pop();
 		q = q-x.peek();
 		x.pop();
 		x.push(q);
 	    }
 	    else if (s.charAt(i) == '*'){
-		Double q= x.peek();
+		double q= x.peek();
 		x.pop();
 		q = q*x.peek();
 		x.pop();
 		x.push(q);
 	    }
 	    else if (s.charAt(i) == '/'){
-		Double q= x.peek();
+		double q= x.peek();
 		x.pop();
 		q = q/x.peek();
 		x.pop();
