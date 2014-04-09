@@ -2,17 +2,19 @@ import java.io.*;
 import java.util.*;
 
 public class ArrayStack{
+    private int top;
     private String[] stack;
     private int numElements;
 
     public ArrayStack(){
+	top = -1;
 	stack = new String[5];
 	numElements = 0;
     }
     public void push(String s){
 	if (numElements < stack.length){
 	    stack[numElements] = s;
-	    numElements++;
+	    numElements++;top++;
 	}else{
 	    String[] temp = new String[stack.length*2];
 	    for (int a = 0; a<numElements; a++){
@@ -26,7 +28,7 @@ public class ArrayStack{
     public String pop(){
 	String temp = stack[numElements - 1];
 	stack[numElements] = null;
-	numElements--;
+	numElements--;numElements--;
 	return temp;
     }
     public String peek(){

@@ -22,28 +22,28 @@ public class RPN {
 		}
 	    }
 	    else if (s.charAt(i) == '+'){
-		double q= x.peek();
+		Double q= x.peek();
 		x.pop();
 		q = q+ x.peek();
 		x.pop();
 		x.push(q);
 	    }
 	    else if (s.charAt(i) == '-'){
-		double q= x.peek();
+		Double q= x.peek();
 		x.pop();
 		q = q-x.peek();
 		x.pop();
 		x.push(q);
 	    }
 	    else if (s.charAt(i) == '*'){
-		double q= x.peek();
+		Double q= x.peek();
 		x.pop();
 		q = q*x.peek();
 		x.pop();
 		x.push(q);
 	    }
 	    else if (s.charAt(i) == '/'){
-		double q= x.peek();
+		Double q= x.peek();
 		x.pop();
 		q = q/x.peek();
 		x.pop();
