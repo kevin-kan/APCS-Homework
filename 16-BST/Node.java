@@ -1,18 +1,18 @@
 public class Node{
-    private String data;
+    private int data;
     private Node left;
     private Node right;
 
-    public Node(String d){
+    public Node(int d){
 	data = d;
 	right = null;
 	left = null;
     }
 
-    public void setData(String d){
+    public void setData(int d){
 	data = d;
     }
-    public String getData(){
+    public int getData(){
 	return data;
     }
     public void setLeft(Node n){
