@@ -38,7 +38,7 @@ public class BST{
 	    last.setLeft(n);
 	}
     }
-    public void delete(Node n){
+    public void delete(int data){
 	/*
 	  1. get a pointer to the parent of the node we want to delete
 	  -> piggyback or recursion
@@ -60,8 +60,24 @@ public class BST{
 
 	  3. root - treat as special case with if statement
 	  -> OR use a  dummy node
-
 	*/
+        Node n = search(data);
+        if ( n == null ){
+            return n;
+        }else if ((n.getLeft() == null) && (n.getRight() == null)){
+	    n = null;
+	    return n;
+	}else if ((n.getLeft() != null) && (n.getRight() == null)){
+	    n = n.getLeft();
+	    n.setLeft(null);
+	    return n;
+	}else if ((n.getLeft() == null) && (n.getRight() != null)){
+	    n = n.getRight();
+	    n.setRight(null);
+	    return n;
+	}else{
+	    //how?
+	}
     }
 
 }
