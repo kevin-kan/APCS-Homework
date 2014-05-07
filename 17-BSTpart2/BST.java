@@ -104,7 +104,6 @@ public class BST{
 	    }
 	}
 
-	//1 or 2 are null
 	if (child.getRight() == null || child.getLeft() == null){
 	    if (child.getRight() == null){
 		if (leftBranch)
