@@ -1,5 +1,9 @@
 public class BST{
-    private Node root;
+    public Node root;
+    
+    public BST() {
+	root = null;
+    }
     
     public Node search(int x){
 	Node current = root;
@@ -11,6 +15,7 @@ public class BST{
 	}
 	return current;
     }
+
     public Node search2(Node n, int x){
 	if (n == null || n.getData() == x){
 	    return n;
@@ -20,25 +25,35 @@ public class BST{
 	    return search2(n.getLeft(), x);
 	}
     }
-    public void insert(Node n){
-	Node current = root;
-	Node last = root;
-	while(current!=null){
-	    if(n.getData()>current.getData()){
-		last=current;
-		current=current.getRight();
-	    }else{
-		last=current;
-		current=current.getLeft();
-	    }
-	}
-	if(n.getData()>last.getData()){
-	    last.setRight(n);
+
+    public void insert(Node n) {
+	Node x = root;
+	Node y = null;
+	if (root == null){
+	    root = n;
 	}else{
-	    last.setLeft(n);
+	    while (y == null) {
+		if (x.getData() < n.getData()) {
+		    if (x.getRight() == null) 
+			y = x;
+		    else 
+			x = x.getRight();
+		}
+		else {
+		    if (x.getLeft() == null) 
+			y = x;
+		    else
+			x = x.getLeft();
+		}
+	    }
+	    if (n.getData() > y.getData()) 
+		y.setRight(n);
+	    else
+		y.setLeft(n);
 	}
     }
-    public void delete(int data){
+
+    public void delete(int i){
 	/*
 	  1. get a pointer to the parent of the node we want to delete
 	  -> piggyback or recursion
@@ -61,22 +76,77 @@ public class BST{
 	  3. root - treat as special case with if statement
 	  -> OR use a  dummy node
 	*/
-        Node n = search(data);
-        if ( n == null ){
-            return n;
-        }else if ((n.getLeft() == null) && (n.getRight() == null)){
-	    n = null;
-	    return n;
-	}else if ((n.getLeft() != null) && (n.getRight() == null)){
-	    n = n.getLeft();
-	    n.setLeft(null);
-	    return n;
-	}else if ((n.getLeft() == null) && (n.getRight() != null)){
-	    n = n.getRight();
-	    n.setRight(null);
-	    return n;
-	}else{
-	    //how?
+	if (search(i) == null){
+	    System.out.println("not found");
+	    return;
+	}
+
+	Node parent = root;
+	Node child = search(i);
+	boolean leftBranch = false;
+	boolean parentFound = false;
+
+
+	while (parent != null && parentFound == false){
+	    if (parent.getRight().getData() == i){
+	        parentFound = true;
+		leftBranch = false;
+	    }
+	    else if (parent.getLeft().getData() == i){
+		parentFound = true;
+		leftBranch = true;
+	    }
+	    else{
+		if (parent.getData() > i)
+		    parent = parent.getLeft();
+		else if (parent.getData() < i)
+		    parent = parent.getRight();
+	    }
+	}
+
+	//1 or 2 are null
+	if (child.getRight() == null || child.getLeft() == null){
+	    if (child.getRight() == null){
+		if (leftBranch)
+		    parent.setLeft(child.getLeft());
+		else
+		    parent.setRight(child.getRight());
+	    }
+	    else{
+		if (leftBranch)
+		    parent.setRight(child.getRight());
+		else
+		    parent.setLeft(child.getLeft());
+	    }
+	}
+
+	else{
+	    Node temp = child.getLeft();
+	    while (temp.getRight() != null){
+		temp = temp.getRight();
+	    }
+	    int largest = temp.getData();
+	    delete(largest);
+	    child.setData(largest);
+	}
+
+	if (root.getData() == i){
+	    Node dummy = new Node(-1);
+	    dummy.setRight(root);
+	    dummy = root;
+	    delete(dummy.getRight().getData());
+	    root = dummy.getRight();
+
+	}		
+    }
+
+    public void traverse(Node n){
+	if  (n == null)
+	    return;
+	else{
+	    System.out.println(n);
+	    traverse(n.getLeft());
+	    traverse(n.getRight());
 	}
     }
 
